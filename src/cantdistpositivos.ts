@@ -10,7 +10,9 @@ while (numero !== 0) {
     cantNumPositivos++;
   }
   cantNumTotal++;
-  numero = Number(prompt("Ingrese un numero"));
+  numero = Number(
+    prompt("Ingrese un numero positivo, negativo o cero para finalizar")
+  );
 }
 if (cantNumTotal > 0) {
   porcNumPositivos = (cantNumPositivos / cantNumTotal) * 100;
