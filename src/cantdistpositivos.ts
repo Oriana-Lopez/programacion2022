@@ -1,6 +1,6 @@
-let cantNumTotal,
-  cantNumPositivos,
-  porcNumPositivos: number = 0;
+let cantNumTotal: number = 0;
+let cantNumPositivos: number = 0;
+let porcNumPositivos: number = 0;
 
 let numero: number = Number(
   prompt("Ingrese un numero positivo, negativo o cero para finalizar")
