@@ -1,36 +1,41 @@
-let num1: number = Number(prompt("Ingrese el número de alumnos: "));
-let num2: string = prompt("A quien busca: ");
-
-let numAlumnos : number = num1;
-let alumnos : string[] = new Array(numAlumnos);
-let nota1 : number[] = new Array(numAlumnos);
-let nota2 : number[] = new Array(numAlumnos);
-let nota3 : number[] = new Array(numAlumnos);
-let indice : number;
-
-for (let indice: number = 0; indice < numAlumnos.length; indice++) {
-  let alumnos[indice] = prompt("Nombre: ");
-  let nota1[indice] = Number(prompt("Nota 1er trimestre:"));
-  let nota2[indice] = Number(prompt("Nota 2do trimestre:"));
-  let nota3[indice] = Number(prompt("Nota 3er trimestre:"));
+function obtenerPromedioAlumno(indice: number): number {
+  let suma = arrayNota1[indice] + arrayNota2[indice] + arrayNota3[indice];
+  suma /= 3;
+  return suma;
 }
 
-let alumBuscado : string = num2;
-let encontrado : boolean = false;
-let promedio : number = 0;
-indice = 0;
-
-while (indice < numAlumnos && !encontrado) {
-  if (alumnos[indice] == alumBuscado) {
-    encontrado = true;
-    promedio = nota1[indice] + nota2[indice] + nota3[indice];
-    promedio /= 3;
+function obtenerPosicion(alumno: string): number {
+  let posicion: number = -1;
+  for (let indice: number = 0; indice < 3; indice++) {
+    if (arrayAlumnos[indice] === alumno) {
+      posicion = indice;
+    }
   }
-  indice++;
+  return posicion;
 }
 
-if (encontrado) {
-  console.log("El promedio de ",alumBuscado, " es ",promedio);
+function cargarNotasDeAlumnos() {
+  for (let indice: number = 0; indice < 3; indice++) {
+    arrayAlumnos[indice] = prompt("Ingrese el nombre del alumno: ");
+    arrayNota1[indice] = Number(prompt("Nota 1er trimestre:"));
+    arrayNota2[indice] = Number(prompt("Nota 2do trimestre:"));
+    arrayNota3[indice] = Number(prompt("Nota 3er trimestre:"));
+  }
+}
+
+let arrayAlumnos: string[] = new Array(10);
+let arrayNota1: number[] = new Array(10);
+let arrayNota2: number[] = new Array(10);
+let arrayNota3: number[] = new Array(10);
+
+cargarNotasDeAlumnos();
+let alumno: string = prompt("A quien busca: ");
+
+if (obtenerPosicion(alumno) === -1) {
+  console.log("El alumno no existe");
 } else {
-console.log("No se pudo encontrar a ",alumBuscado);
+  console.log(
+    "El promedio es ",
+    obtenerPromedioAlumno(obtenerPosicion(alumno))
+  );
 }
